@@ -9,7 +9,7 @@ namespace Krowiorsch.Lucene.Filter
     /// remove the apostrophe-s
     /// peter's -> peter
     /// </summary>
-    public class ApostopheFilter : TokenFilter
+    public sealed class ApostopheFilter : TokenFilter
     {
         readonly string[] _apothropheSymbols = { "'s", "`s", "´s" };
         readonly ITermAttribute _termAttribute;

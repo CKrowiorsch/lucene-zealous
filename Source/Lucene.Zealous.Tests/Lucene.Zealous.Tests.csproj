@@ -61,6 +61,7 @@
   <ItemGroup>
     <Compile Include="Exentsions\TokenFilterExtentions.cs" />
     <Compile Include="Filter\with_apothropheFilter.cs" />
+    <Compile Include="Filter\with_urltokenFilter.cs" />
     <Compile Include="Model\Token.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
