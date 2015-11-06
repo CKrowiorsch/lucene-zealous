@@ -16,7 +16,7 @@ rem ensure psake.extend is installed
 %NUGET% install -OutputDirectory Packages psake >nul
 
 rem get psake path from existing folder with version number
-for /f "tokens=*" %%F in ('dir /b /a:d "%BASEPATH%Packages\PSake*"') do call set PSAKEPATH=%BASEPATH%Packages\%%F\
+for /f "tokens=*" %%F in ('dir /b /a:d "%BASEPATH%Packages\PSake*"') do call set PSAKEPATH=%BASEPATH%Packages\%%F\tools\
 
 SET PSAKE=%PSAKEPATH%psake.cmd
 %PSAKE% -nologo %*
