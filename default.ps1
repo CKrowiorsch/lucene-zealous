@@ -10,7 +10,7 @@ properties {
 
 task default -depends Help
 task ci -depends rebuild,test
-task appvayor -depends rebuild          # appvayor can discover the tests
+task appvayor -depends rebuild,rebuildtests         # appvayor can discover the tests
 
 
 task Help {
@@ -35,6 +35,14 @@ task Rebuild -depends Clean {
 	$solution = get-location;
 
   exec { msbuild /nologo /v:minimal /t:rebuild /p:"Configuration=Release;OutputPath=$bindir/Lucene.Zealous/;SolutionDir=$solution/" "Source/Lucene.Zealous/Lucene.Zealous.csproj" }
+}
+
+task rebuildtests -depends Clean {
+  exec { .nuget\nuget.exe restore }
+
+	$solution = get-location;
+
+  exec { msbuild /nologo /v:minimal /t:rebuild /p:"Configuration=Release;OutputPath=$bindir/Lucene.Zealous.Tests/;SolutionDir=$solution/" "Source/Lucene.Zealous.Tests/Lucene.Zealous.Tests.csproj" }
 }
 
 task Test -depends Clean {
