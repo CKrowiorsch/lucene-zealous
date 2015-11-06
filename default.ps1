@@ -10,6 +10,7 @@ properties {
 
 task default -depends Help
 task ci -depends rebuild,test
+task appvayor -depends rebuild          # appvayor can discover the tests
 
 
 task Help {
