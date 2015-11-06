@@ -32,7 +32,7 @@ namespace Krowiorsch.Lucene.Filter
         It should_not_have_any_token = () => _result.ShouldBeEmpty();
     }
 
-    class when_filter_a_text_with_a_url_without_procol : with_urltokenFilter
+    class when_filter_a_text_with_a_url_without_protocol : with_urltokenFilter
     {
         Establish context = () => SetupFilter("text with simple url: www.google.de");
         It should_have_token_with_entry_www_google_de = () => _result.Select(t => t.Term).ShouldContainOnly("www.google.de");
