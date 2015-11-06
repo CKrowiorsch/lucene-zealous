@@ -1,14 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Krowiorsch.Lucene.Exentsions;
 using Lucene.Net.Analysis;
 using Lucene.Net.Analysis.Tokenattributes;
 using Machine.Specifications;
+using Token = Krowiorsch.Lucene.Model.Token;
 
 // ReSharper disable InconsistentNaming
 // ReSharper disable UnusedMember.Local
-
-
 
 namespace Krowiorsch.Lucene.Filter
 {
@@ -17,22 +17,6 @@ namespace Krowiorsch.Lucene.Filter
         protected static void SetupFilter(string text)
         {
             _sut = new ApostopheFilter(new WhitespaceTokenizer(new StringReader(text))); 
-        }
-
-        protected static IEnumerable<string> ReadTermsFromFilter(TokenFilter filter)
-        {
-            var term = filter.GetAttribute<ITermAttribute>();
-
-            while(filter.IncrementToken())
-                yield return term.Term;
-        }
-
-        protected static IEnumerable<int> ReadPositionsFromFilter(TokenFilter filter)
-        {
-            var position = filter.GetAttribute<IPositionIncrementAttribute>();
-
-            while (filter.IncrementToken())
-                yield return position.PositionIncrement;
         }
 
         protected static ApostopheFilter _sut;
@@ -44,11 +28,19 @@ namespace Krowiorsch.Lucene.Filter
             SetupFilter("peter's");
 
         Because of = () =>
-            _result = ReadTermsFromFilter(_sut).ToArray();
+            _result = _sut.ReadTokens().ToArray();
 
         It should_have_one_token_with_peter = () =>
-            _result.ShouldContainOnly("peter");
+            _result.Select(t => t.Term).ShouldContainOnly("peter");
 
-        static string[] _result;
+        It should_have_the_startoffset_of_zero = () =>
+            _result.ElementAt(0).StartOffset.ShouldEqual(0);
+
+        It should_have_the_endoffset_of_the_complete_term = () =>
+            _result.ElementAt(0).EndOffset.ShouldEqual(7);
+
+        static Token[] _result;
     }
+
+
 }

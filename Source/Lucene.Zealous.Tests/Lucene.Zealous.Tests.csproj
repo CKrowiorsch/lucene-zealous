@@ -59,7 +59,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Exentsions\TokenFilterExtentions.cs" />
     <Compile Include="Filter\with_apothropheFilter.cs" />
+    <Compile Include="Model\Token.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -67,9 +69,6 @@
       <Project>{a86a62b8-1b70-4de4-bfe0-210cebb91c7a}</Project>
       <Name>Lucene.Zealous</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
