@@ -1,11 +1,4 @@
-@rem ==========================================================================
-@rem =                                                                        =
-@rem =            Autodeploy Psake script from SW                             =
-@rem =            v1.0                                                        =
-@rem =                                                                        =
-@rem ==========================================================================
-
-@ECHO OFF
+﻿@ECHO OFF
 SET BASEPATH=%~dp0%
 SET NUGETPATH=%BASEPATH%.nuget\
 SET NUGET=%NUGETPATH%nuget.exe
@@ -28,4 +21,4 @@ for /f "tokens=*" %%F in ('dir /b /a:d "%BASEPATH%Packages\LandauMedia.PSake.Ext
 SET PSAKE=%PSAKEPATH%psake.cmd
 %PSAKE% -nologo %*
 
-:END 
+:END
