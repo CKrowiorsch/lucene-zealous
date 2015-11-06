@@ -5,6 +5,10 @@ using Lucene.Net.Analysis.Tokenattributes;
 
 namespace Krowiorsch.Lucene.Filter
 {
+    /// <summary>
+    /// remove the apostrophe-s
+    /// peter's -> peter
+    /// </summary>
     public class ApostopheFilter : TokenFilter
     {
         readonly string[] _apothropheSymbols = { "'s", "`s", "´s" };

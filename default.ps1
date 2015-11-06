@@ -6,8 +6,6 @@ properties {
     $outdir = (join-path $location "Build");
     $artifactsdir = (join-path $outdir "Artifacts");
     $bindir = (join-path $outdir "Bin");
-    $passtestdir = (join-path $bindir "passtest");
-    $env = "";
 }
 
 task default -depends Help
@@ -45,13 +43,14 @@ task Test -depends Clean {
 
   exec {.nuget\nuget install Machine.Specifications.Runner.Console -OutputDirectory Packages}
 	$mspecdir = (resolve-path ".\Packages\Machine.Specifications.Runner.Console.0.*\")
-	$mspec = @("$mspecdir\tools\mspec-x86-clr4.exe", "--xml", "$artifactsdir\mspec-results.xml", "--html", "$artifactsdir\mspec-results.html", "-x", "NeedStagingElasticSearch");
+	$mspec = @("$mspecdir\tools\mspec-x86-clr4.exe", "--xml", "$artifactsdir\mspec-results.xml", "--html", "$artifactsdir\mspec-results.html");
 
 	foreach($testProj in (dir -Filter ".\Source\*.Tests")){
 		exec { msbuild /nologo /v:m /t:rebuild /p:"Configuration=Release;OutputPath=$bindir/$testProj" "Source/$testProj/$testProj.csproj" }
 		$mspec += "$bindir\$testProj\$testProj.dll";
 	}
 
+  write-host $mspec
 	try {exec { &([scriptblock]::create($mspec -join ' ')) }} catch {}
 
 	$xslt = New-Object System.Xml.Xsl.XslCompiledTransform;
