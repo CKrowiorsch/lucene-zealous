@@ -26,12 +26,14 @@ namespace Krowiorsch.Lucene.Filter
         protected static IEnumerable<Token> _result;
     }
 
+    [Subject("Filter:UrlTokenFilter")]
     class when_filter_a_non_url_token : with_urltokenFilter
     {
         Establish context = () => SetupFilter("text without any url");
         It should_not_have_any_token = () => _result.ShouldBeEmpty();
     }
 
+    [Subject("Filter:UrlTokenFilter")]
     class when_filter_a_text_with_a_url_without_protocol : with_urltokenFilter
     {
         Establish context = () => SetupFilter("text with simple url: www.google.de");
