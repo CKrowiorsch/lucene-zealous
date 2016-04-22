@@ -47,11 +47,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="KnownContextElements.cs" />
     <Compile Include="Filter\ApostopheFilter.cs" />
     <Compile Include="Filter\AsciiFoldingFilterCustom.cs" />
     <Compile Include="Filter\FlagFilter.cs" />
     <Compile Include="Filter\UrlTokenFilter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Special\Enumerations\AufzaehlungParser.cs" />
+    <Compile Include="Special\Enumerations\TupleMerger.cs" />
+    <Compile Include="Special\Enumerations\AufzaehlungDetector.cs" />
+    <Compile Include="Tokenizer\ContextTokenizer.cs" />
+    <Compile Include="Tokenizer\LetterDigitSpecialCharacterTokenizer.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
