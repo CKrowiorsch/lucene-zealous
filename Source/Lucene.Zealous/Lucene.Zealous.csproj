@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Filter\ApostopheFilter.cs" />
+    <Compile Include="Filter\AsciiFoldingFilterCustom.cs" />
     <Compile Include="Filter\FlagFilter.cs" />
     <Compile Include="Filter\UrlTokenFilter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
