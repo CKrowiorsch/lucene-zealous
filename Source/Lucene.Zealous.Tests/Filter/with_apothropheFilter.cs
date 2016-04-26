@@ -1,9 +1,7 @@
-﻿using System.Collections.Generic;
-using System.IO;
+﻿using System.IO;
 using System.Linq;
 using Krowiorsch.Lucene.Exentsions;
 using Lucene.Net.Analysis;
-using Lucene.Net.Analysis.Tokenattributes;
 using Machine.Specifications;
 using Token = Krowiorsch.Lucene.Model.Token;
 
